@@ -17,10 +17,6 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import FormError from "../form-error";
 import FormSuccess from "../form-success";
-import { newPassword } from "../../actions/new-password";
-
-import { signIn } from "next-auth/react";
-import { DEFAULT_LOGIN_REDIRECT } from "../../routes";
 import { useSearchParams } from "next/navigation";
 
 const NewPasswordForm = () => {

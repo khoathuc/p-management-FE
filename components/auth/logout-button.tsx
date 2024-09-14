@@ -1,6 +1,4 @@
 "use client";
-
-import { signOut } from "next-auth/react";
 import { logout } from "../../server/logout";
 
 import React from "react";

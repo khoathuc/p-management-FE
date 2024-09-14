@@ -24,5 +24,4 @@ export const RegisterSchema = z.object({
   }),
   password: z.string().min(6, { message: "Mininum 6 characters required" }),
   username: z.string().min(1, { message: "Name is required" }),
-  // status: z.number().min(0, "Status must be a positive number"),
 });

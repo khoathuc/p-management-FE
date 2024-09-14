@@ -111,15 +111,6 @@ const UserItem = () => {
               >
                 Add another account
               </Button>
-              {/* <SignOutButton>
-                <Button
-                  variant={"ghost"}
-                  size={"sm"}
-                  className="text-xs w-full justify-start px-3"
-                >
-                  Logout
-                </Button>
-              </SignOutButton> */}
             </div>
             <hr />
             <div className="w-full text-muted-foreground p-1.5">

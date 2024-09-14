@@ -17,10 +17,6 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import FormError from "../form-error";
 import FormSuccess from "../form-success";
-import { reset } from "../../actions/reset";
-
-import { signIn } from "next-auth/react";
-import { DEFAULT_LOGIN_REDIRECT } from "../../routes";
 import { Spinner } from "../spinner";
 
 const ResetForm = () => {
