@@ -1,6 +1,4 @@
 "use client";
-import { logout } from "../../server/logout";
-
 import React from "react";
 
 interface LogoutButtonProps {
@@ -9,7 +7,7 @@ interface LogoutButtonProps {
 
 export const LogoutButton = ({ children }: LogoutButtonProps) => {
   const onClick = () => {
-    logout();
+    // TODO: Logout
   };
 
   return (

@@ -17,7 +17,6 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import FormError from "../form-error";
 import FormSuccess from "../form-success";
-import { register } from "../../server/register";
 import { Spinner } from "../spinner";
 
 const RegisterForm = () => {
@@ -42,15 +41,7 @@ const RegisterForm = () => {
     setError("");
     setSuccess("");
     startTransition(() => {
-      register(values).then((data) => {
-        setError(data.error);
-        setSuccess(data.success);
-
-        // Set an additional 3-second delay for the pending state
-        setTimeout(() => {
-          // After 3 seconds, the pending state will stop
-        }, 3000);
-      });
+      // TODO: Register
     });
   };
 
