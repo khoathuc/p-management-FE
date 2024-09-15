@@ -5,7 +5,7 @@ import { Toaster } from "sonner";
 import { ThemeProvider } from "@components/providers/theme-provider";
 import { ModalProvider } from "@components/providers/modal-provider";
 import { cn } from "@lib/utils";
-
+const dotenv = require('dotenv');
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

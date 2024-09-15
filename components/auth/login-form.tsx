@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useTransition } from "react";
+import React, { useTransition } from "react";
 import CardWrapper from "./card-wrapper";
 import { LoginSchema } from "../../lib/validations/auth";
 import { useForm } from "react-hook-form";
@@ -15,25 +15,14 @@ import {
 } from "../ui/form";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import FormError from "../form-error";
-import FormSuccess from "../form-success";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { FaKey } from "react-icons/fa6";
-import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Spinner } from "../spinner";
+import { rest } from "@lib/rest";
 
 const LoginForm = () => {
-    const searchParams = useSearchParams();
-    const urlError =
-        searchParams.get("error") === "OAuthAccountNotLinked"
-            ? "Email already in use with different provider!"
-            : "";
-
-    const [showTwoFactor, setShowTwoFactor] = useState(false);
-    const [error, setError] = useState<string | undefined>("");
-    const [success, setSuccess] = useState<string | undefined>("");
     const [isPending, startTransition] = useTransition();
     const form = useForm<z.infer<typeof LoginSchema>>({
         resolver: zodResolver(LoginSchema),
@@ -43,24 +32,15 @@ const LoginForm = () => {
         },
     });
 
-    // ============================================================
-    // NOTE: CLIENT ACTIONS CALL SIGN IN PROVIDER
-    // ============================================================
-    // const onClick = (provider: "google" | "github") => {
-    //   signIn(provider, {
-    //     callbackUrl: DEFAULT_LOGIN_REDIRECT,
-    //   });
-    // };
-
-    // ============================================================
-    // NOTE: SERVER ACTIONS REQUEST SUBMIT FORM
-    // ============================================================
-    const onSubmit = (values: z.infer<typeof LoginSchema>) => {
-        setError("");
-        setSuccess("");
-        startTransition(() => {
-            //TODO: Login
-        });
+    const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
+        await rest
+            .post("/auth/login", { ...values })
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     };
 
     return (
@@ -75,7 +55,6 @@ const LoginForm = () => {
                         size={"sm"}
                         className="w-full flex items-center gap-2"
                         variant={"outline"}
-                        // onClick={() => onClick("google")}
                     >
                         <FcGoogle size={18} />
                         Continue with Google
@@ -84,7 +63,6 @@ const LoginForm = () => {
                         size={"sm"}
                         className="w-full flex items-center gap-2"
                         variant={"outline"}
-                        // onClick={() => onClick("github")}
                     >
                         <FaGithub size={16} />
                         Continue with Github
@@ -93,7 +71,6 @@ const LoginForm = () => {
                         size={"sm"}
                         className="w-full flex items-center gap-2"
                         variant={"outline"}
-                        // onClick={() => onClick("github")}
                     >
                         <FaKey size={12} />
                         Single Sign-On (SSO)
@@ -102,93 +79,61 @@ const LoginForm = () => {
                 <div className="h-[1px] w-full bg-black/10 mt-1"></div>
                 <Form {...form}>
                     <form
-                        // NOTE: SERVER ACTIONS SUBMIT
                         onSubmit={form.handleSubmit(onSubmit)}
                         className="space-y-2"
                     >
-                        {showTwoFactor && (
+                        <div className="space-y-2">
                             <FormField
                                 control={form.control}
-                                name="code"
+                                name="email"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel className="font-normal text-xs">
-                                            Enter Two Factor Code
+                                        <FormLabel className="text-xs">
+                                            Enter your email address
                                         </FormLabel>
                                         <FormControl>
                                             <Input
                                                 {...field}
                                                 disabled={isPending}
-                                                placeholder="123456"
+                                                placeholder="user@example.com"
+                                                type="email"
                                             />
                                         </FormControl>
-                                        {/* <p className="text-xs leading-tighter">
-                      Use an organization email to easily collaborate with
-                      teammates
-                    </p> */}
-                                        <FormMessage />
+                                        <FormMessage className="text-xs font-normal" />
                                     </FormItem>
                                 )}
                             ></FormField>
-                        )}
-                        {!showTwoFactor && (
-                            <div className="space-y-2 text-destructive">
-                                <FormField
-                                    control={form.control}
-                                    name="email"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel className="font-normal text-xs">
-                                                Enter your email address
-                                            </FormLabel>
-                                            <FormControl>
-                                                <Input
-                                                    {...field}
-                                                    disabled={isPending}
-                                                    placeholder="user@example.com"
-                                                    type="email"
-                                                />
-                                            </FormControl>
-                                            {/* <p className="text-xs leading-tighter">
-                      Use an organization email to easily collaborate with
-                      teammates
-                    </p> */}
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                ></FormField>
-                                <FormField
-                                    control={form.control}
-                                    name="password"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel className="font-normal text-xs">
-                                                Enter your password
-                                            </FormLabel>
-                                            <FormControl>
-                                                <Input
-                                                    {...field}
-                                                    disabled={isPending}
-                                                    placeholder="******"
-                                                    type="password"
-                                                />
-                                            </FormControl>
-                                            <FormMessage />
-                                            <Button
-                                                size="sm"
-                                                variant="link"
-                                                asChild
-                                                className="px-0 text-destructive text-xs hover:text-link"
-                                            >
-                                                <Link href="/auth/reset">
-                                                    Forgot password?
-                                                </Link>
-                                            </Button>
-                                        </FormItem>
-                                    )}
-                                ></FormField>
-                            </div>
-                        )}
+                            <FormField
+                                control={form.control}
+                                name="password"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel className="text-xs">
+                                            Enter your password
+                                        </FormLabel>
+                                        <FormControl>
+                                            <Input
+                                                {...field}
+                                                disabled={isPending}
+                                                placeholder="******"
+                                                type="password"
+                                            />
+                                        </FormControl>
+                                        <FormMessage className="text-xs font-normal" />
+                                        <Button
+                                            size="sm"
+                                            variant="link"
+                                            asChild
+                                            className="px-0 text-destructive text-xs hover:text-link"
+                                        >
+                                            <Link href="/auth/reset">
+                                                Forgot password?
+                                            </Link>
+                                        </Button>
+                                    </FormItem>
+                                )}
+                            ></FormField>
+                        </div>
                         <Button
                             disabled={isPending}
                             type="submit"
@@ -202,8 +147,6 @@ const LoginForm = () => {
                                 "Continue"
                             )}
                         </Button>
-                        <FormError message={error || urlError} />
-                        <FormSuccess message={success} />
                     </form>
                 </Form>
             </div>
