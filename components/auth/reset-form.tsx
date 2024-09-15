@@ -1,7 +1,7 @@
 "use client";
 import React, { startTransition, useState, useTransition } from "react";
 import CardWrapper from "./card-wrapper";
-import { LoginSchema, ResetSchema } from "../../schemas";
+import { LoginSchema, ResetSchema } from "../../lib/validations/auth";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
