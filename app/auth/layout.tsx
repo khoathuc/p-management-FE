@@ -1,4 +1,4 @@
-import NavHeader from "@/components/auth/nav-header";
+import NavHeader from "@components/auth/nav-header";
 import React, { ReactNode } from "react";
 
 const LoginLayout = ({ children }: { children: React.ReactNode }) => {

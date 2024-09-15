@@ -1,7 +1,7 @@
 import React from "react";
 import HeadContent from "./head-content";
 import TitleContent from "./title-content";
-import { Switch } from "@/components/ui/switch";
+import { Switch } from "@components/ui/switch";
 
 const ConnectionNotifications = () => {
   return (

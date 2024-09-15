@@ -68,7 +68,6 @@ const LoginForm = () => {
             headerLabel="Create your account"
             backButtonLabel="Don't have an account?"
             backButtonHref="/auth/register"
-            // showSocial
         >
             <div className="flex flex-col gap-4 ">
                 <div className="flex flex-col gap-2">
