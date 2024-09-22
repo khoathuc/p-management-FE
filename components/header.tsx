@@ -2,7 +2,7 @@ import React from "react";
 import { RxNotionLogo } from "react-icons/rx";
 import { AiOutlineGlobal } from "react-icons/ai";
 import { FaChevronDown } from "react-icons/fa6";
-import { HeaderMenubar } from "@/components/menu-bar";
+import { HeaderMenubar } from "@components/menu-bar";
 
 import Link from "next/link";
 import { Button } from "./ui/button";

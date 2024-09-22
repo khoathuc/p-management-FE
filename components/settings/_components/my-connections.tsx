@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@components/ui/button";
 import Image, { StaticImageData } from "next/image";
 import React from "react";
 

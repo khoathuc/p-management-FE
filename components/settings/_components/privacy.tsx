@@ -1,9 +1,9 @@
 import React from "react";
 import HeadContent from "./head-content";
 import TitleContent from "./title-content";
-import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
-import { Popover, PopoverContent } from "@/components/ui/popover";
+import { Button } from "@components/ui/button";
+import { Switch } from "@components/ui/switch";
+import { Popover, PopoverContent } from "@components/ui/popover";
 import { PopoverTrigger } from "@radix-ui/react-popover";
 import { CheckIcon, ChevronDown, Moon, Sun } from "lucide-react";
 import {
@@ -11,7 +11,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@components/ui/dropdown-menu";
 import { useTheme } from "next-themes";
 import {
   Command,
@@ -19,8 +19,8 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command";
-import { cn } from "@/lib/utils";
+} from "@components/ui/command";
+import { cn } from "@lib/utils";
 
 const Privacy = () => {
   const [open, setOpen] = React.useState(false);

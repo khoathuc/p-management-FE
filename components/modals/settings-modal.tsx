@@ -2,55 +2,25 @@
 
 import { Dialog, DialogContent, DialogHeader } from "../ui/dialog";
 import { useSettings } from "../../hooks/use-settings";
-
-import { Label } from "../ui/label";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "../ui/tooltip";
 import { Avatar, AvatarImage } from "../ui/avatar";
 
 import {
   Bell,
-  Building,
-  ChevronsLeft,
-  CircleArrowUp,
   CircleUserRound,
-  Combine,
-  Dock,
-  Download,
   Globe,
-  Home,
-  KeyRound,
-  Search,
-  Settings,
-  ShieldCheck,
   SlidersHorizontal,
   SquareArrowUpRight,
-  Users,
 } from "lucide-react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { SettingItem } from "../settings/_components/setting-items";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import AccountSecurity from "../settings/_components/account-security";
-import MyAccountSupport from "../settings/_components/my-account-support";
-import MyProfile from "../settings/_components/my-profile";
 import MyAccountTab from "../settings/my-account-tab";
 import MySettingsTab from "../settings/my-settings-tab";
-import MyNotifications from "../settings/my-notifications-tab";
-import MyNotificationsTab from "../settings/my-notifications-tab";
-import MyConnectionsTab from "../settings/my-connections-tab";
 import LanguageAndRegionTab from "../settings/language-and-region-tab";
 import React from "react";
 
 export const SettingsModal = () => {
   const settings = useSettings();
-  //   const { user } = useUser();
-  console.log("settings", settings);
 
   return (
     <Dialog open={settings.isOpen} onOpenChange={settings.onClose}>

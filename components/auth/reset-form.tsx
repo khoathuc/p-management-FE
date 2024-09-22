@@ -1,7 +1,7 @@
 "use client";
 import React, { startTransition, useState, useTransition } from "react";
 import CardWrapper from "./card-wrapper";
-import { LoginSchema, ResetSchema } from "../../schemas";
+import { LoginSchema, ResetSchema } from "../../lib/validations/auth";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,10 +17,6 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import FormError from "../form-error";
 import FormSuccess from "../form-success";
-import { reset } from "../../actions/reset";
-
-import { signIn } from "next-auth/react";
-import { DEFAULT_LOGIN_REDIRECT } from "../../routes";
 import { Spinner } from "../spinner";
 
 const ResetForm = () => {

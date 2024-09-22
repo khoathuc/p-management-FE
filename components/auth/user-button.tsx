@@ -8,8 +8,8 @@ import {
   ExitIcon,
 } from "@radix-ui/react-icons";
 
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { cn } from "@lib/utils";
+import { Button } from "@components/ui/button";
 import {
   Command,
   CommandEmpty,
@@ -17,16 +17,16 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+} from "@components/ui/command";
+import { Avatar, AvatarImage, AvatarFallback } from "@components/ui/avatar";
 
-import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
+import { DropdownMenuItem } from "@components/ui/dropdown-menu";
 import { LogoutButton } from "./logout-button";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
+} from "@components/ui/popover";
 import { FaChevronDown, FaUser } from "react-icons/fa6";
 import { AiOutlineGlobal } from "react-icons/ai";
 import { useCurrentUser } from "@/hooks/use-current-user";

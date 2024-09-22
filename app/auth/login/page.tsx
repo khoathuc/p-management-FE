@@ -1,5 +1,5 @@
-import LoginForm from "@/components/auth/login-form";
-import SuspenseFallback from "@/components/suspense-fallback";
+import LoginForm from "@components/auth/login-form";
+import SuspenseFallback from "@components/suspense-fallback";
 import React, { Suspense } from "react";
 
 const LoginPage = () => {
