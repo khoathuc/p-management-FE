@@ -18,7 +18,7 @@ import { Popover, PopoverContent } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { PopoverTrigger } from "@radix-ui/react-popover";
 import { CheckIcon, ChevronDown, Link } from "lucide-react";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { toast } from "sonner";
 import {
     Table,
@@ -29,6 +29,7 @@ import {
     TableRow
 } from "../../ui/table";
 import HeadContent from "./head-content";
+import { rest } from '../../../lib/rest'
 
 const WorkspaceAccess = () => {
     const [isChange, setIsChange] = useState(true);
@@ -55,6 +56,43 @@ const WorkspaceAccess = () => {
             action: ""
         }
     ]);
+    const [workspaceUsers, setWorkspaceUsers] = useState();
+
+    interface Workspace {
+        userId: "string",
+        name: "string",
+        logo: "string",
+        members: [
+            "string"
+        ],
+        owners: [
+            "string"
+        ],
+        admins: [
+            "string"
+        ]
+    }
+
+    const getWorkspaceUsersData = (response: any) => {
+        let workspaceUsersData: object[];
+        let cnt = 0;
+        response.members.forEach((element: string) => {
+            workspaceUsersData.push(new Object(element));
+        })
+    }
+
+    useEffect(() => {
+        let response: any;
+        rest.get<Workspace[]>('/workspaces')
+            .then((res: { data: any; }) => {
+                // console.log(res.data.data);
+                response = res.data.data[0];
+                getWorkspaceUsersData(response);
+            })
+            .catch((error: any) => {
+                console.error(error);
+            });
+    }, []);
 
     const [openPopover, setOpenPopover] = useState<string | null>(null); // Track which Popover is open
 
