@@ -1,7 +1,6 @@
 "use client";
-import { rest } from "@/lib/rest";
 import { createContext, ReactNode, useContext } from "react";
-import useSWR from "swr";
+import { useCustomSWR } from "@lib/useSwr";
 
 export enum UserStatus {
     Active,
@@ -36,13 +35,8 @@ type CurrentUser = User & {
 export const UserContext = createContext<CurrentUser | null>(null);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-    const fetcher = (url: string) =>
-        rest.get(url).then((res) => {
-            return res.data;
-        });
-
-    const { data, error, isLoading } = useSWR("/users/me", fetcher);
-
+    const { data, error, isLoading } = useCustomSWR("/users/me");
+    
     return (
         <UserContext.Provider value={{ ...data, isLoading }}>
             {children}
