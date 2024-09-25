@@ -1,27 +1,33 @@
 "use client";
 
-import { Dialog, DialogContent, DialogHeader } from "../ui/dialog";
 import { useSettings } from "../../hooks/use-settings";
+import { Dialog, DialogContent } from "../ui/dialog";
+
 import { Avatar, AvatarImage } from "../ui/avatar";
 
 import {
   Bell,
   CircleUserRound,
+  Cog,
   Globe,
   SlidersHorizontal,
   SquareArrowUpRight,
 } from "lucide-react";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { SettingItem } from "../settings/_components/setting-items";
+import MyWorkspaces from "../settings/my-workspaces";
+import ThisWorkspace from "../settings/this-workspace";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import MyAccountTab from "../settings/my-account-tab";
 import MySettingsTab from "../settings/my-settings-tab";
 import LanguageAndRegionTab from "../settings/language-and-region-tab";
 import React from "react";
+import { useUser } from "@components/providers/auth-provider";
 
 export const SettingsModal = () => {
   const settings = useSettings();
-
+  const user = useUser();
+  
   return (
     <Dialog open={settings.isOpen} onOpenChange={settings.onClose}>
       <DialogContent className="p-0 max-w-6xl md:w-[90vw] rounded-xl">
@@ -39,12 +45,10 @@ export const SettingsModal = () => {
                 </div>
                 <div className="">
                   <p className="text-sm line-clamp-1 font-medium text-primary">
-                    {/* {user?.fullName} */}
-                    William
+                    {user?.firstName}
                   </p>
                   <p className="text-xs font-normal text-[10px] text-muted-foreground truncate">
-                    {/* {user?.emailAddresses[0].emailAddress} */}
-                    example@gmail.com
+                    {user?.email}
                   </p>
                 </div>
               </div>
@@ -57,7 +61,7 @@ export const SettingsModal = () => {
               <SettingItem
                 label="My settings"
                 icon={SlidersHorizontal}
-                // onClick={settings.onOpen}
+              // onClick={settings.onOpen}
               />
             </TabsTrigger>
 
@@ -65,7 +69,7 @@ export const SettingsModal = () => {
               <SettingItem
                 label="My notifications"
                 icon={Bell}
-                // onClick={settings.onOpen}
+              // onClick={settings.onOpen}
               />
             </TabsTrigger>
 
@@ -73,7 +77,7 @@ export const SettingsModal = () => {
               <SettingItem
                 label="My Connections"
                 icon={SquareArrowUpRight}
-                // onClick={settings.onOpen}
+              // onClick={settings.onOpen}
               />
             </TabsTrigger>
 
@@ -81,7 +85,23 @@ export const SettingsModal = () => {
               <SettingItem
                 label="Language & region"
                 icon={Globe}
-                // onClick={settings.onOpen}
+              // onClick={settings.onOpen}
+              />
+            </TabsTrigger>
+
+            <TabsTrigger value="this-workspace">
+              <SettingItem
+                label="This Workspace"
+                icon={Cog}
+              // onClick={settings.onOpen}
+              />
+            </TabsTrigger>
+
+            <TabsTrigger value="my-workspaces">
+              <SettingItem
+                label="My Workspaces"
+                icon={Cog}
+              // onClick={settings.onOpen}
               />
             </TabsTrigger>
 
@@ -153,6 +173,12 @@ export const SettingsModal = () => {
             </TabsContent> */}
             <TabsContent value="language-and-region">
               <LanguageAndRegionTab />
+            </TabsContent>
+            <TabsContent value="this-workspace">
+              <ThisWorkspace />
+            </TabsContent>
+            <TabsContent value="my-workspaces">
+              <MyWorkspaces />
             </TabsContent>
           </div>
         </Tabs>
