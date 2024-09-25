@@ -21,9 +21,14 @@ import { FaKey } from "react-icons/fa6";
 import Link from "next/link";
 import { Spinner } from "../spinner";
 import { rest } from "@lib/rest";
+import { useRouter, useSearchParams } from "next/navigation";
+import { toast } from "sonner";
 
 const LoginForm = () => {
     const [isPending, startTransition] = useTransition();
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    
     const form = useForm<z.infer<typeof LoginSchema>>({
         resolver: zodResolver(LoginSchema),
         defaultValues: {
@@ -36,10 +41,13 @@ const LoginForm = () => {
         await rest
             .post("/auth/login", { ...values })
             .then((response) => {
-                console.log(response);
+                toast.success("Login successful!");
+
+                const callbackURL = searchParams.get("callback-url") || "/";
+                router.push(callbackURL);
             })
             .catch((error) => {
-                console.log(error);
+                toast.error(error.message);
             });
     };
 
