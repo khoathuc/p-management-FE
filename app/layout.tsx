@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "@components/providers/theme-provider";
 import { ModalProvider } from "@components/providers/modal-provider";
+import { AuthProvider } from "@components/providers/auth-provider";
 import { cn } from "@lib/utils";
 const dotenv = require('dotenv');
 const inter = Inter({ subsets: ["latin"] });
@@ -30,7 +31,9 @@ export default async function RootLayout({
         >
           <Toaster position="bottom-center" />
           <ModalProvider />
-          {children}
+            <AuthProvider>
+                {children}
+            </AuthProvider>
         </ThemeProvider>
       </body>
     </html>
