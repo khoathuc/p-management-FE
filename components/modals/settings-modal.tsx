@@ -22,10 +22,12 @@ import MyAccountTab from "../settings/my-account-tab";
 import MySettingsTab from "../settings/my-settings-tab";
 import LanguageAndRegionTab from "../settings/language-and-region-tab";
 import React from "react";
+import { useUser } from "@components/providers/auth-provider";
 
 export const SettingsModal = () => {
   const settings = useSettings();
-
+  const user = useUser();
+  
   return (
     <Dialog open={settings.isOpen} onOpenChange={settings.onClose}>
       <DialogContent className="p-0 max-w-6xl md:w-[90vw] rounded-xl">
@@ -43,12 +45,10 @@ export const SettingsModal = () => {
                 </div>
                 <div className="">
                   <p className="text-sm line-clamp-1 font-medium text-primary">
-                    {/* {user?.fullName} */}
-                    William
+                    {user?.firstName}
                   </p>
                   <p className="text-xs font-normal text-[10px] text-muted-foreground truncate">
-                    {/* {user?.emailAddresses[0].emailAddress} */}
-                    example@gmail.com
+                    {user?.email}
                   </p>
                 </div>
               </div>

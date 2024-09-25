@@ -7,36 +7,36 @@ import { ModalProvider } from "@components/providers/modal-provider";
 import { AuthProvider } from "@components/providers/auth-provider";
 import { cn } from "@lib/utils";
 
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "PManagement",
-  description: "P-Management",
+    title: "PManagement",
+    description: "P-Management",
 };
 
 export default async function RootLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={cn("bg-background dark:bg-[#1F1F1F]")}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-          storageKey="notion-theme-2"
-        >
-          <Toaster position="bottom-center" />
-          <ModalProvider />
-            <AuthProvider>
-                {children}
-            </AuthProvider>
-        </ThemeProvider>
-      </body>
-    </html>
-  );
+    return (
+        <html lang="en" suppressHydrationWarning>
+            <body className={cn("bg-background dark:bg-[#1F1F1F]")}>
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="system"
+                    enableSystem
+                    disableTransitionOnChange
+                    storageKey="notion-theme-2"
+                >
+                    <Toaster position="bottom-center" />
+                    <AuthProvider>
+                        <ModalProvider />
+                        {children}
+                    </AuthProvider>
+                </ThemeProvider>
+            </body>
+        </html>
+    );
 }

@@ -6,9 +6,8 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Id } from "@/convex/_generated/dataModel";
-import { cn, timeSolved } from "@/lib/utils";
 import { useUser } from "@clerk/clerk-react";
-import { Clock, File, FileText } from "lucide-react";
+import { Clock, FileText } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 

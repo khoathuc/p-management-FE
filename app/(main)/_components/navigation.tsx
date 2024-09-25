@@ -4,21 +4,16 @@ import {
   ChevronsLeft,
   MenuIcon,
   Plus,
-  PlusCircle,
   Search,
   Settings,
   Trash,
   Home,
-  Speaker,
   Sparkles,
   Inbox,
 } from "lucide-react";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
-import { toast } from "sonner";
-import { HiSparkles } from "react-icons/hi2";
-
 import { cn } from "@/lib/utils";
 import {
   Popover,
@@ -30,11 +25,7 @@ import { useSettings } from "@/hooks/use-settings";
 
 import UserItem from "./user-item";
 import { Item } from "./item";
-import { DocumentList } from "./document-list";
-import { TrashBox } from "./trash-box";
 import { Navbar } from "./navbar";
-import DocLabel from "./doc-label";
-import { FavouriteList } from "./favourite-list";
 
 export const Navigation = () => {
   const router = useRouter();
@@ -43,7 +34,6 @@ export const Navigation = () => {
   const params = useParams();
   const pathname = usePathname();
   const isMobile = useMediaQuery("(max-width: 768px)");
-  console.log("params", params);
 
   const isResizingRef = useRef(false);
   const sidebarRef = useRef<ElementRef<"aside">>(null);
