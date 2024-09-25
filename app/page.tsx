@@ -3,7 +3,6 @@ import { LoginButton } from "@components/auth/login-button";
 import { Button } from "@components/ui/button";
 import Header from "@components/header";
 import BodyContainer from "@components/body-container";
-import { useUser } from "@/components/providers/auth-provider";
 
 export default function Home() {  
     return (
