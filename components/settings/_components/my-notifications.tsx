@@ -1,8 +1,8 @@
 import React from "react";
 import HeadContent from "./head-content";
 import TitleContent from "./title-content";
-import { Switch } from "@/components/ui/switch";
-import { Button } from "@/components/ui/button";
+import { Switch } from "@components/ui/switch";
+import { Button } from "@components/ui/button";
 
 const MyNotifications = () => {
   return (

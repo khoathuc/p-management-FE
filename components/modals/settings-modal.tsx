@@ -3,7 +3,7 @@
 import { useSettings } from "../../hooks/use-settings";
 import { Dialog, DialogContent } from "../ui/dialog";
 
-import { Avatar } from "../ui/avatar";
+import { Avatar, AvatarImage } from "../ui/avatar";
 
 import {
   Bell,
@@ -11,21 +11,20 @@ import {
   Cog,
   Globe,
   SlidersHorizontal,
-  SquareArrowUpRight
+  SquareArrowUpRight,
 } from "lucide-react";
 
 import { SettingItem } from "../settings/_components/setting-items";
-import LanguageAndRegionTab from "../settings/language-and-region-tab";
-import MyAccountTab from "../settings/my-account-tab";
-import MySettingsTab from "../settings/my-settings-tab";
 import MyWorkspaces from "../settings/my-workspaces";
 import ThisWorkspace from "../settings/this-workspace";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
+import MyAccountTab from "../settings/my-account-tab";
+import MySettingsTab from "../settings/my-settings-tab";
+import LanguageAndRegionTab from "../settings/language-and-region-tab";
+import React from "react";
 
 export const SettingsModal = () => {
   const settings = useSettings();
-  //   const { user } = useUser();
-  console.log("settings", settings);
 
   return (
     <Dialog open={settings.isOpen} onOpenChange={settings.onClose}>

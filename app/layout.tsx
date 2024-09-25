@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import favicon from "../public/notion.png";
 import { Toaster } from "sonner";
-import { ThemeProvider } from "@/components/providers/theme-provider";
-import { ModalProvider } from "@/components/providers/modal-provider";
-import { cn } from "@/lib/utils";
+import { ThemeProvider } from "@components/providers/theme-provider";
+import { ModalProvider } from "@components/providers/modal-provider";
+import { AuthProvider } from "@components/providers/auth-provider";
+import { cn } from "@lib/utils";
 
+const dotenv = require('dotenv');
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Notion - Bring your ideas to life.",
-  description: "Bring your ideas to life",
+  title: "PManagement",
+  description: "P-Management",
 };
 
 export default async function RootLayout({
@@ -31,7 +32,9 @@ export default async function RootLayout({
         >
           <Toaster position="bottom-center" />
           <ModalProvider />
-          {children}
+            <AuthProvider>
+                {children}
+            </AuthProvider>
         </ThemeProvider>
       </body>
     </html>

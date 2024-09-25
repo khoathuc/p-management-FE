@@ -1,5 +1,4 @@
 "use server";
-
 import * as z from "zod";
 
 import { LoginSchema } from "../schemas";
@@ -7,7 +6,6 @@ import axios from "axios";
 import { ENDPOINTS } from "../constants/api";
 import { redirect } from "next/navigation";
 import { DEFAULT_LOGIN_REDIRECT } from "../routes";
-import { AuthError } from "next-auth";
 
 export const login = async (values: z.infer<typeof LoginSchema>) => {
   const validatedFields = LoginSchema.safeParse(values);
