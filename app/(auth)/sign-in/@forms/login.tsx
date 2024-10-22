@@ -20,14 +20,54 @@ import {
     FormItem,
     FormLabel,
 } from "@/components/ui/form";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
+import { ToastAction } from "@/components/ui/toast";
 
 type LoginFormData = z.infer<typeof loginSchema>;
 export default function LoginForm() {
+    const { toast } = useToast();
+    const router = useRouter();
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const form = useForm<LoginFormData>({
         resolver: zodResolver(loginSchema),
     });
 
-    const onSubmit = async (data: LoginFormData) => {};
+    const onSubmit = async () => {
+        const values = form.getValues();
+
+        try {
+            const res = await signIn("credentials", {
+                email: values.email,
+                password: values.password,
+                redirect: false,
+            });
+
+            if (!res || res.error) {
+                toast({
+                    variant: "destructive",
+                    description: res?.error || "db-error",
+                    action: (
+                        <ToastAction altText="Try again">Try again</ToastAction>
+                    ),
+                });
+            } else {
+                router.push("/");
+            }
+        } catch (error) {
+            toast({
+                variant: "destructive",
+                description: "Unknown error",
+                action: (
+                    <ToastAction altText="Try again">Try again</ToastAction>
+                ),
+            });
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     return (
         <Card className="mx-auto min-w-80 max-w-sm">
