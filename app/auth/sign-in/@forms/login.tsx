@@ -27,6 +27,7 @@ import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
 
 type LoginFormData = z.infer<typeof loginSchema>;
+
 export default function LoginForm() {
     const { toast } = useToast();
     const router = useRouter();
@@ -133,7 +134,7 @@ export default function LoginForm() {
                 </Form>
                 <div className="mt-4 text-center text-sm">
                     Don&apos;t have an account?{" "}
-                    <Link href="sign-up" className="underline">
+                    <Link href="auth/sign-up" className="underline">
                         Sign up
                     </Link>
                 </div>
