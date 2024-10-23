@@ -1,3 +1,7 @@
+import HeroSection from "./components/hero.section";
+
 export default function Home(){
-    return <div>Landing</div>
+    return <div className="container flex">
+        <HeroSection />
+    </div>
 }

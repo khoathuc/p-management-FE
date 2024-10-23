@@ -17,7 +17,8 @@ import {
     Grip,
     ChevronDown,
     Pencil,
-    Upload
+    Upload,
+    MoveRight,
 } from "lucide-react";
 
 export type Icon = LucideIcon;
@@ -41,4 +42,5 @@ export const Icons = {
     noti: Bell,
     moon: Moon,
     circle_help: HelpCircleIcon,
+    move_right: MoveRight,
 };
