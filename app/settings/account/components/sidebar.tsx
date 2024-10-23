@@ -1,3 +1,4 @@
+"use client";
 import { Icons } from "@/components/ui/icon";
 import {
     Sidebar,
@@ -5,18 +6,36 @@ import {
     SidebarGroup,
     SidebarGroupContent,
     SidebarGroupLabel,
+    SidebarHeader,
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { ViewerAvatar } from "@/components/uikit/user/viewer";
+import { useViewer } from "@/hooks/user/use.viewer";
 import Link from "next/link";
 
 export default function SettingAccountSidebar() {
+    const { data: viewer, isLoading, isError } = useViewer();
+
     return (
-        <Sidebar className="top-12">
+        <Sidebar className="absolute top-12">
+            <SidebarHeader>
+                <SidebarMenu>
+                    <SidebarMenuItem>
+                        <div className="flex gap-3 items-center border-b pb-2">
+                            <ViewerAvatar />
+                            <div>
+                                <p className="text-sm">{viewer?.username}</p>
+                                <p className="text-xs">{viewer?.email}</p>
+                            </div>
+                        </div>
+                    </SidebarMenuItem>
+                </SidebarMenu>
+            </SidebarHeader>
             <SidebarContent>
                 <SidebarGroup>
-                    <SidebarGroupLabel>Projects</SidebarGroupLabel>
+                    <SidebarGroupLabel>User settings</SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>
                             <SidebarMenuItem key="info">
@@ -30,7 +49,7 @@ export default function SettingAccountSidebar() {
                             <SidebarMenuItem key="password">
                                 <SidebarMenuButton asChild>
                                     <Link href="/settings/account?tab=password">
-                                        <Icons.home />
+                                        <Icons.key />
                                         Password
                                     </Link>
                                 </SidebarMenuButton>
@@ -38,7 +57,7 @@ export default function SettingAccountSidebar() {
                             <SidebarMenuItem key="noti">
                                 <SidebarMenuButton asChild>
                                     <Link href="/settings/account?tab=noti">
-                                        <Icons.home />
+                                        <Icons.message_dot />
                                         Notifications
                                     </Link>
                                 </SidebarMenuButton>
@@ -46,15 +65,22 @@ export default function SettingAccountSidebar() {
                             <SidebarMenuItem key="locale">
                                 <SidebarMenuButton asChild>
                                     <Link href="/settings/account?tab=locale">
-                                        <Icons.home />
+                                        <Icons.languages />
                                         Language & region
                                     </Link>
                                 </SidebarMenuButton>
                             </SidebarMenuItem>
+                        </SidebarMenu>
+                    </SidebarGroupContent>
+                </SidebarGroup>
+                <SidebarGroup>
+                    <SidebarGroupLabel>Workspaces</SidebarGroupLabel>
+                    <SidebarGroupContent>
+                        <SidebarMenu>
                             <SidebarMenuItem key="workspaces">
                                 <SidebarMenuButton asChild>
                                     <Link href="/settings/account?tab=workspaces">
-                                        <Icons.home />
+                                        <Icons.network />
                                         Workspaces
                                     </Link>
                                 </SidebarMenuButton>

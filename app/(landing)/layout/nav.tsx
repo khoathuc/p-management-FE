@@ -8,8 +8,8 @@ import {
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { getServerSession } from "next-auth";
-import ViewerAvatar from "@/components/uikit/user/viewer.avatar";
 import { AppLogo } from "@/components/uikit/app/app";
+import { NavViewerAvatar } from "../components/nav.viewer.avatar";
 
 export default async function Nav() {
     const session = await getServerSession();
@@ -17,7 +17,7 @@ export default async function Nav() {
     return (
         <nav className="py-5">
             <div className="container flex justify-between items-center">
-                <AppLogo size={44}/>
+                <AppLogo size={44} />
 
                 <NavigationMenu className="flex gap-6">
                     <NavigationMenuList>
@@ -68,7 +68,7 @@ export default async function Nav() {
 
                 <div>
                     {session ? (
-                        <ViewerAvatar />
+                        <NavViewerAvatar />
                     ) : (
                         <div className="flex gap-3">
                             <Button variant="outline" asChild>

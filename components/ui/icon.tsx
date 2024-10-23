@@ -19,6 +19,10 @@ import {
     Pencil,
     Upload,
     MoveRight,
+    KeyRound,
+    MessageSquareDot,
+    Languages,
+    Network
 } from "lucide-react";
 
 export type Icon = LucideIcon;
@@ -43,4 +47,8 @@ export const Icons = {
     moon: Moon,
     circle_help: HelpCircleIcon,
     move_right: MoveRight,
+    key: KeyRound,
+    message_dot: MessageSquareDot,
+    languages: Languages,
+    network: Network,
 };

@@ -1,7 +1,6 @@
 "use client";
 
 import { useViewer } from "@/hooks/user/use.viewer";
-import { AvatarSkeleton, UserAvatar } from "./avatar";
 import {
     DropdownMenuContent,
     DropdownMenu,
@@ -12,25 +11,16 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
+import { ViewerAvatar } from "@/components/uikit/user/viewer";
 
 interface ViewAvatarProps {
     size?: "sm" | "md" | "lg";
 }
-export default function ViewerAvatar({ size }: ViewAvatarProps) {
-    const { data: viewer, isLoading, isError } = useViewer();
-
-    if (!viewer) {
-        return <AvatarSkeleton size={size || "md"} />;
-    }
-
+export function NavViewerAvatar({ size }: ViewAvatarProps) {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger>
-                <UserAvatar
-                    user={viewer}
-                    size={size || "md"}
-                    className="hover:cursor-pointer"
-                />
+                <ViewerAvatar />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-52">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>

@@ -1,7 +1,7 @@
 import { Input } from "@/components/ui/input";
 import { AppLogo } from "../app/app";
 import { Icons } from "@/components/ui/icon";
-import ViewerAvatar from "../user/viewer.avatar";
+import {ViewerAvatar} from "../user/viewer";
 
 export function SuperHeader() {
     return (
