@@ -9,6 +9,7 @@ export function MasterLayout({ children }: MasterLayoutProps) {
     return (
         <div className="flex flex-col">
             <SuperHeader />
+            {children}
         </div>
     );
 }

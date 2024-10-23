@@ -1,3 +1,4 @@
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { MasterLayout } from "@/components/uikit/layout/master";
 
 export default function SettingLayout({
