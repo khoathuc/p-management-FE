@@ -13,11 +13,14 @@ import {
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 
-export default function ViewerAvatar() {
+interface ViewAvatarProps {
+    size?: "sm" | "md" | "lg";
+}
+export default function ViewerAvatar({ size }: ViewAvatarProps) {
     const { data: viewer, isLoading, isError } = useViewer();
 
     if (!viewer) {
-        return <AvatarSkeleton size="md" />;
+        return <AvatarSkeleton size={size || "md"} />;
     }
 
     return (
@@ -25,7 +28,7 @@ export default function ViewerAvatar() {
             <DropdownMenuTrigger>
                 <UserAvatar
                     user={viewer}
-                    size="md"
+                    size={size || "md"}
                     className="hover:cursor-pointer"
                 />
             </DropdownMenuTrigger>

@@ -1,7 +1,5 @@
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import Link from "next/link";
-import app from "@/lib/app";
 import {
     NavigationMenu,
     NavigationMenuItem,
@@ -11,6 +9,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { getServerSession } from "next-auth";
 import ViewerAvatar from "@/components/uikit/user/viewer.avatar";
+import { AppLogo } from "@/components/uikit/app/app";
 
 export default async function Nav() {
     const session = await getServerSession();
@@ -18,14 +17,7 @@ export default async function Nav() {
     return (
         <nav className="py-5">
             <div className="container flex justify-between items-center">
-                <Link href="/" className="hover:bg-secondary">
-                    <Image
-                        src={app.logoUrl}
-                        alt="app_logo"
-                        width={44}
-                        height={44}
-                    />
-                </Link>
+                <AppLogo size={44}/>
 
                 <NavigationMenu className="flex gap-6">
                     <NavigationMenuList>
