@@ -19,6 +19,7 @@ export const authOptions: NextAuthOptions = {
                     });
 
                     if (res.data && res.data.statusCode === 201) {
+                        console.log(res.data.data)
                         return res.data.data;
                     } else {
                         throw new Error("Invalid credentials");
@@ -35,17 +36,16 @@ export const authOptions: NextAuthOptions = {
     ],
     callbacks: {
         async signIn({ user, account }) {
+            console.log(user);
             if (account?.type === "credentials") {
-                account.accessToken = user.access_token;
-                account.accessToken = user.refresh_token;
+                account.accessToken = user.accessToken;
             }
 
             return true;
         },
         async jwt({ token, account }) {
             if (account && account.type === "credentials") {
-                token.accessToken = account.access_token;
-                token.refreshToken = account.refresh_token;
+                token.accessToken = account.accessToken;
             }
 
             return token;

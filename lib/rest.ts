@@ -1,8 +1,6 @@
 import axios from "axios";
 import { getSession } from "next-auth/react";
 
-const isServer = typeof window === "undefined";
-
 export const rest = axios.create({
     baseURL: process.env.NEXT_PUBLIC_API_URL,
     timeout: 60000,
@@ -13,12 +11,10 @@ export const rest = axios.create({
 });
 
 rest.interceptors.request.use(async (config) => {
-    if (isServer) {
-        const session = await getSession();
+    const session = await getSession();
 
-        if (session) {
-            config.headers["Authorization"] = `Bearer ${session.accessToken}`;
-        }
+    if (session?.accessToken) {
+        config.headers["Authorization"] = `Bearer ${session.accessToken}`;
     }
 
     return config;

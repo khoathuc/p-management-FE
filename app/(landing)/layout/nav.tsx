@@ -1,59 +1,82 @@
-"use client";
 import { Button } from "@/components/ui/button";
-import { Icons } from "@/components/ui/icon";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import app from '@/lib/app';
+import app from "@/lib/app";
+import {
+    NavigationMenu,
+    NavigationMenuItem,
+    NavigationMenuLink,
+    NavigationMenuList,
+    navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
+import { getServerSession } from "next-auth";
+import ViewerAvatar from "@/components/uikit/user/viewer.avatar";
 
-export default function Nav() {
-    const [authenticated, setAuthenticated] = useState<Boolean>(false);
+export default async function Nav() {
+    const session = await getServerSession();
 
     return (
         <nav className="py-5">
             <div className="container flex justify-between items-center">
                 <Link href="/" className="hover:bg-secondary">
-                    <Image src={app.logoUrl} alt="app_logo" width={44} height={44}/>
+                    <Image
+                        src={app.logoUrl}
+                        alt="app_logo"
+                        width={44}
+                        height={44}
+                    />
                 </Link>
 
-                <ul className="flex gap-6">
-                    <li>
-                        <Link
-                            href="/"
-                            className="hover:underline hover:bg-secondary p-2 rounded-sm"
-                        >
-                            Home
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="/products"
-                            className="hover:underline hover:bg-secondary p-2 rounded-sm"
-                        >
-                            Product
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="/about-us"
-                            className="hover:underline hover:bg-secondary p-2 rounded-sm"
-                        >
-                            About
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="/contact"
-                            className="hover:underline hover:bg-secondary p-2 rounded-sm"
-                        >
-                            Contact
-                        </Link>
-                    </li>
-                </ul>
+                <NavigationMenu className="flex gap-6">
+                    <NavigationMenuList>
+                        <NavigationMenuItem>
+                            <Link href="/" legacyBehavior passHref>
+                                <NavigationMenuLink
+                                    className={navigationMenuTriggerStyle()}
+                                >
+                                    Home
+                                </NavigationMenuLink>
+                            </Link>
+                        </NavigationMenuItem>
+                    </NavigationMenuList>
+                    <NavigationMenuList>
+                        <NavigationMenuItem>
+                            <Link href="/products" legacyBehavior passHref>
+                                <NavigationMenuLink
+                                    className={navigationMenuTriggerStyle()}
+                                >
+                                    Products
+                                </NavigationMenuLink>
+                            </Link>
+                        </NavigationMenuItem>
+                    </NavigationMenuList>
+                    <NavigationMenuList>
+                        <NavigationMenuItem>
+                            <Link href="/about-us" legacyBehavior passHref>
+                                <NavigationMenuLink
+                                    className={navigationMenuTriggerStyle()}
+                                >
+                                    About
+                                </NavigationMenuLink>
+                            </Link>
+                        </NavigationMenuItem>
+                    </NavigationMenuList>
+                    <NavigationMenuList>
+                        <NavigationMenuItem>
+                            <Link href="/contact" legacyBehavior passHref>
+                                <NavigationMenuLink
+                                    className={navigationMenuTriggerStyle()}
+                                >
+                                    Contact
+                                </NavigationMenuLink>
+                            </Link>
+                        </NavigationMenuItem>
+                    </NavigationMenuList>
+                </NavigationMenu>
 
                 <div>
-                    {authenticated ? (
-                        <div>Avatar</div>
+                    {session ? (
+                        <ViewerAvatar />
                     ) : (
                         <div className="flex gap-3">
                             <Button variant="outline" asChild>

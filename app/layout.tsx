@@ -1,8 +1,9 @@
-import type { Metadata } from 'next'
+import type { Metadata } from "next";
 import { Toaster } from "@/components/ui/toaster";
 import localFont from "next/font/local";
 import "./globals.css";
 import SessionProvider from "@/providers/session";
+import ReactQueryProvider from "@/providers/react-query";
 
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
@@ -27,14 +28,16 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <SessionProvider>
-                <body
-                    className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-                >
-                    <main>{children}</main>
-                    <Toaster />
-                </body>
-            </SessionProvider>
+            <ReactQueryProvider>
+                <SessionProvider>
+                    <body
+                        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+                    >
+                        <main>{children}</main>
+                        <Toaster />
+                    </body>
+                </SessionProvider>
+            </ReactQueryProvider>
         </html>
     );
 }
