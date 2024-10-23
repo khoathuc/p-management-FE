@@ -23,10 +23,17 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form";
+import { rest } from "@/lib/rest";
+import { toast } from "@/hooks/use-toast";
+import { ToastAction } from "@/components/ui/toast";
+import { useRouter } from "next/navigation";
+import BaseSpinner from "@/components/uikit/base/spinner";
+import { AxiosError } from "axios";
 
 type RegisterFormData = z.infer<typeof registerSchema>;
 
 export default function RegisterForm() {
+    const router = useRouter();
     const form = useForm<RegisterFormData>({
         resolver: zodResolver(registerSchema),
     });
@@ -34,8 +41,33 @@ export default function RegisterForm() {
     const [showPassword, setShowPassword] = useState<Boolean>(false);
     const [showConfirmPassword, setShowConfirmPassword] =
         useState<Boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    const onSubmit = async (data: RegisterFormData) => {};
+    const onSubmit = async (data: RegisterFormData) => {
+        try {
+            const res = await rest.post("auth/register", data);
+
+            if (res && res.data) {
+                form.reset();
+                router.push("/auth/sign-in");
+            }
+        } catch (error: any) {
+            let message = "Unknown error";
+            if (error instanceof AxiosError) {
+                message = error.response?.data.message;
+            }
+
+            toast({
+                variant: "destructive",
+                description: message || "Unknown error",
+                action: (
+                    <ToastAction altText="Try again">Try again</ToastAction>
+                ),
+            });
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     return (
         <Card className="mx-auto min-w-80 max-w-sm">
@@ -176,7 +208,14 @@ export default function RegisterForm() {
                                 );
                             }}
                         />
-                        <Button className="w-full" type="submit">Sign Up</Button>
+                        <Button
+                            className="w-full"
+                            type="submit"
+                            disabled={isLoading}
+                        >
+                            {isLoading && <BaseSpinner />}
+                            Sign Up
+                        </Button>
                     </form>
                 </Form>
                 <div className="mt-4 text-center text-sm">

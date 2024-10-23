@@ -25,6 +25,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
+import BaseSpinner from "@/components/uikit/base/spinner";
 
 type LoginFormData = z.infer<typeof loginSchema>;
 
@@ -55,6 +56,7 @@ export default function LoginForm() {
                     ),
                 });
             } else {
+                form.reset();
                 router.push("/");
             }
         } catch (error) {
@@ -127,7 +129,12 @@ export default function LoginForm() {
                                 );
                             }}
                         />
-                        <Button className="w-full" type="submit">
+                        <Button
+                            className="w-full"
+                            type="submit"
+                            disabled={isLoading}
+                        >
+                            {isLoading && <BaseSpinner />}
                             Sign In
                         </Button>
                     </form>
