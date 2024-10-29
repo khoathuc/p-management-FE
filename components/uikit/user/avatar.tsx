@@ -6,7 +6,7 @@ import { User } from "@/types/user";
 
 interface UserAvatarProps {
     user: User;
-    size?: "sm" | "md" | "lg";
+    size?: "sm" | "md" | "lg" | "xl";
     className?: string;
 }
 
@@ -14,7 +14,8 @@ interface UserAvatarProps {
 const sizeClasses = {
     sm: "w-4 h-4",
     md: "w-8 h-8",
-    lg: "w-8 h-8",
+    lg: "w-16 h-16",
+    xl: "w-24 h-24"
 };
 
 //TODO: add random color on fallback
@@ -32,7 +33,7 @@ export function UserAvatar({ user, className, size }: UserAvatarProps) {
 }
 
 interface AvatarSkeletonProps {
-    size?: "sm" | "md" | "lg";
+    size?: "sm" | "md" | "lg" | "xl";
     className?: string;
 }
 

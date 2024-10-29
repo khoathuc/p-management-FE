@@ -14,9 +14,15 @@ import {
 import { ViewerAvatar } from "@/components/uikit/user/viewer";
 import { useViewer } from "@/hooks/user/use.viewer";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function SettingAccountSidebar() {
     const { data: viewer, isLoading, isError } = useViewer();
+    const pathname = usePathname();
+    const pathTail = pathname.split("/").pop();
+    const isActive = (key:string)=>{
+        return key == pathTail
+    }
 
     return (
         <Sidebar className="absolute top-12">
@@ -39,32 +45,32 @@ export default function SettingAccountSidebar() {
                     <SidebarGroupContent>
                         <SidebarMenu>
                             <SidebarMenuItem key="info">
-                                <SidebarMenuButton asChild>
-                                    <Link href="/settings/account?tab=info">
+                                <SidebarMenuButton asChild isActive={isActive("info")}>
+                                    <Link href="/settings/account">
                                         <Icons.home />
                                         Personal Info
                                     </Link>
                                 </SidebarMenuButton>
                             </SidebarMenuItem>
                             <SidebarMenuItem key="password">
-                                <SidebarMenuButton asChild>
-                                    <Link href="/settings/account?tab=password">
+                                <SidebarMenuButton asChild isActive={isActive("password")}>
+                                    <Link href="/settings/account/password">
                                         <Icons.key />
                                         Password
                                     </Link>
                                 </SidebarMenuButton>
                             </SidebarMenuItem>
                             <SidebarMenuItem key="noti">
-                                <SidebarMenuButton asChild>
-                                    <Link href="/settings/account?tab=noti">
+                                <SidebarMenuButton asChild isActive={isActive("noti")}>
+                                    <Link href="/settings/account/noti">
                                         <Icons.message_dot />
                                         Notifications
                                     </Link>
                                 </SidebarMenuButton>
                             </SidebarMenuItem>
                             <SidebarMenuItem key="locale">
-                                <SidebarMenuButton asChild>
-                                    <Link href="/settings/account?tab=locale">
+                                <SidebarMenuButton asChild isActive={isActive("locale")}>
+                                    <Link href="/settings/account/locale">
                                         <Icons.languages />
                                         Language & region
                                     </Link>
@@ -78,8 +84,8 @@ export default function SettingAccountSidebar() {
                     <SidebarGroupContent>
                         <SidebarMenu>
                             <SidebarMenuItem key="workspaces">
-                                <SidebarMenuButton asChild>
-                                    <Link href="/settings/account?tab=workspaces">
+                                <SidebarMenuButton asChild isActive={isActive("workspaces")}>
+                                    <Link href="/settings/account/workspaces">
                                         <Icons.network />
                                         Workspaces
                                     </Link>

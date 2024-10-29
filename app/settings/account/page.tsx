@@ -1,3 +1,5 @@
-export default function AccountSettingPage(){
-    return <div>Account setting page</div>
+import { redirect } from "next/navigation";
+
+export default function AccountSettingPage() {
+    redirect("/settings/account/info");
 }

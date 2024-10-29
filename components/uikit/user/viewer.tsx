@@ -4,7 +4,7 @@ import { useViewer } from "@/hooks/user/use.viewer";
 import { AvatarSkeleton, UserAvatar } from "./avatar";
 
 interface ViewAvatarProps {
-    size?: "sm" | "md" | "lg";
+    size?: "sm" | "md" | "lg" | "xl";
 }
 export function ViewerAvatar({ size }: ViewAvatarProps) {
     const { data: viewer, isLoading, isError } = useViewer();

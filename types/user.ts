@@ -8,4 +8,5 @@ export type User = {
     currentWorkspaceId: string;
     title: string;
     location: string;
+    status: string;
 };
