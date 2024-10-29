@@ -19,15 +19,15 @@ export function PersonalInfoSection() {
 
     return (
         <SettingSection label="Personal information">
-            <BaseSide className="top-3 right-2">
-                <EditPersonalInformationForm viewer={viewer}/>
+            <BaseSide className="top-4 right-4">
+                <EditPersonalInformationForm viewer={viewer} />
             </BaseSide>
             <div className="flex px-8">
                 <div className="flex flex-col gap-2 items-center mx-16">
                     <ViewerAvatar size="xl" />
                     <div className="rounded-xl bg-green-200 uppercase text-xs font-bold text-success px-3 h-8 flex items-center">
-                      <div className="rounded-full h-2 w-2 bg-success mr-2"></div>
-                      {viewer.status}
+                        <div className="rounded-full h-2 w-2 bg-success mr-2"></div>
+                        {viewer.status}
                     </div>
                 </div>
                 <div className="flex-1">
@@ -89,5 +89,18 @@ export function PersonalInfoSection() {
 }
 
 function PersonalInfoSectionSkeleton() {
-    return <Skeleton />;
+    return (
+        <SettingSection>
+            <div className="flex gap-8 items-center">
+                <Skeleton className="rounded-full w-24 h-24 mx-16" />
+
+                <div className="flex-1 flex flex-col gap-2">
+                    <Skeleton className="h-8 w-full" />
+                    <Skeleton className="h-8 w-full" />
+                    <Skeleton className="h-8 w-full" />
+                    <Skeleton className="h-8 w-full" />
+                </div>
+            </div>
+        </SettingSection>
+    );
 }

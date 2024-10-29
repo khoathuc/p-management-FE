@@ -6,10 +6,6 @@ export default function SettingAccountInfo() {
         <SettingPageLayout>
             <div className="flex flex-col gap-4">
                 <PersonalInfoSection />
-                <div className="flex gap-4">
-                    <PersonalInfoSection />
-                    <PersonalInfoSection />
-                </div>
             </div>
         </SettingPageLayout>
     );
