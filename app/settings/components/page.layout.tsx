@@ -3,5 +3,5 @@ export default function SettingPageLayout({
 }: {
     children: React.ReactNode;
 }) {
-    return <div className="container p-4 bg-secondary">{children}</div>;
+    return <div className="w-full p-4 bg-secondary">{children}</div>;
 }

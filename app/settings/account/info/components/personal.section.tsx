@@ -8,6 +8,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { BaseSide } from "@/components/uikit/base/side";
 import { ViewerAvatar } from "@/components/uikit/user/viewer";
 import { useViewer } from "@/hooks/user/use.viewer";
+import { EditPersonalInformationForm } from "../forms/personal.info.form";
 
 export function PersonalInfoSection() {
     const { data: viewer, isLoading, isError } = useViewer();
@@ -19,10 +20,7 @@ export function PersonalInfoSection() {
     return (
         <SettingSection label="Personal information">
             <BaseSide className="top-3 right-2">
-                <Button size="sm">
-                    <Icons.pencil size={8} />
-                    <p className="text-sm">Edit</p>
-                </Button>
+                <EditPersonalInformationForm viewer={viewer}/>
             </BaseSide>
             <div className="flex px-8">
                 <div className="flex flex-col gap-2 items-center mx-16">

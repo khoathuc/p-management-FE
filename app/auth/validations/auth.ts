@@ -22,7 +22,7 @@ export const passwordRegisterSchema: ZodString = z
     .regex(/[@$!%*?&]/, "Password must contain at least one special character");
 
 export const loginSchema = z.object({
-    email: z.string().email("Invalid email"),
+    email: z.string().email("Invalid email address"),
     password: z.string().min(1, "Password required"),
 });
 
@@ -45,12 +45,6 @@ export const ResendEmailSchema = z.object({
     email: z.string().email("Invalid email"),
 });
 
-export const userProfileSchema = z.object({
-    username: z.string().min(1, "Username is required"),
-    last_name: z.any(),
-    first_name: z.any(),
-    job_title: z.any(),
-});
 
 export const userChangePasswordSchema = z
     .object({

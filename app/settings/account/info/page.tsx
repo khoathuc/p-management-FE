@@ -4,8 +4,12 @@ import { PersonalInfoSection } from "./components/personal.section";
 export default function SettingAccountInfo() {
     return (
         <SettingPageLayout>
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-4">
                 <PersonalInfoSection />
+                <div className="flex gap-4">
+                    <PersonalInfoSection />
+                    <PersonalInfoSection />
+                </div>
             </div>
         </SettingPageLayout>
     );

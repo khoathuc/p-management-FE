@@ -11,9 +11,9 @@ export default function SettingSection({
     children,
 }: SettingSectionProps) {
     return (
-        <div className="relative p-4 bg-background rounded-sm border shadow-lg">
+        <div className="relative p-4 bg-background rounded-sm border shadow-sm">
             {label && <div>
-                <Label className="text-md font-semibold">{label}</Label>
+                <Label className="text-lg font-medium">{label}</Label>
                 <Separator className="my-4"/></div>}
             {children}
         </div>

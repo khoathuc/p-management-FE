@@ -1,6 +1,5 @@
 "use client";
 
-import { useViewer } from "@/hooks/user/use.viewer";
 import {
     DropdownMenuContent,
     DropdownMenu,
